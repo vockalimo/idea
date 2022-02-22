@@ -3,11 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Laravel</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Styles -->
     <style>
@@ -22,11 +26,20 @@
 </head>
 <body class="antialiased">
 <div id="app">
-    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center py-4 sm:pt-0">
-        <hello-world/>
+    <div>
+
+        <image-upload></image-upload>
+
+
     </div>
 </div>
 
-<script src="{{ mix('js/app.js') }}"></script>
+<script
+    type="module"
+    src="https://blog.lalacube.com/mei/mjs/wc-msc-lens.js?r=1">
+</script>
+
+
+<script src="{{ mix('js/app.js') }}?r=1"></script>
 </body>
 </html>
