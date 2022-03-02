@@ -28,5 +28,8 @@ Route::get('/imagesearch', function () {
 
 Route::post('/uploadImage', [FileController::class, 'upload'])->name('upload');
 
+Route::get('/test', [\App\Http\Controllers\VisionController::class, 'test'])->name('test');
+Route::get('/testv1', [\App\Http\Controllers\VisionController::class, 'ProductSearch'])->name("testv2");
+
 
 
