@@ -27,10 +27,11 @@
 <body class="antialiased">
 <div id="app">
     <div>
-
-        <image-upload></image-upload>
-
-
+        <msc-lens
+            webservice='{"uri":"https://laravel.test/productsimilar","fieldName":"file","params":{"_token":"{{ csrf_token() }}","id":"extra param you like"}}'
+            sensorsize="28">
+            <img src="https://picsum.photos/id/635/1000/670" slot="msc-lens-vision" />
+        </msc-lens>
     </div>
 </div>
 

@@ -22,6 +22,50 @@ class VisionController extends Controller
         $this->visionclient = Google::make('vision');
     }
 
+    public function ProductSearchSimilar(Request $request) {
+
+        error_log(" test data ");
+        $request->validate([
+            'file' => 'required|mimes:jpg,jpeg,png|max:204'
+        ]);
+
+        if($request->file()) {
+
+        //    $file_name = time().'_'.$request->file->getClientOriginalName();
+         //   $request->file('file')->storeAs('uploads', $file_name, 'public');
+            $imagecontent = $request->file('file')->get();
+            $query = array(
+                "image" => array(
+                    "content" => base64_encode($imagecontent)
+                ),
+                "features" => array(
+                    "type" => "PRODUCT_SEARCH",
+                    "maxResults" => 5
+                ),
+                "imageContext" => array(
+                    "productSearchParams" => array(
+                        "productSet" => "projects/image-search-341607/locations/asia-east1/productSets/product_set0",
+                        "productCategories" => array(
+                            "apparel-v2",
+                        ),
+                        //    "filter" => "style=womens OR style=women",
+                    )
+                ),
+            );
+            $batchrequest = new BatchAnnotateImagesRequest();
+            $batchrequest->setRequests($query);
+            $response = $this->visionclient->images->annotate($batchrequest);
+
+            return response()->json(['success'=> $response->getResponses()]);
+        } else {
+            return response()->json(['success'=>'File not uploaded successfully.']);
+        }
+    }
+
+    public function ProductSearchSimilarRender(Request $request) {
+        return view('visionimagesearch');
+    }
+
     public function ProductSearch(Request $request)
     {
         $batchrequest = new BatchAnnotateImagesRequest();
@@ -92,6 +136,9 @@ class VisionController extends Controller
         $productSearchResults['results'] = $productSearchResultsTmp['results'];
         $productSearchResults['productGroupedResults'] = $productSearchResultsTmp;
 
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: *");
+        header("Access-Control-Allow-Headers: Origin, Methods, Content-Type");
         return response()->json(array(
             "productSearchResults" => $productSearchResults,
         ));
