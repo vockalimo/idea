@@ -7,6 +7,7 @@ use Google\Service\Vision\BatchAnnotateImagesRequest;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 use PulkitJalan\Google\Facades\Google;
 
 class VisionController extends Controller
@@ -24,16 +25,22 @@ class VisionController extends Controller
 
     public function ProductSearchSimilar(Request $request) {
 
-        error_log(" test data ");
-        $request->validate([
-            'file' => 'required|mimes:jpg,jpeg,png|max:204'
-        ]);
+
+            try {
+                $validateResult = $this->validate($request, [
+                    'file' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+                ]);
+            } catch (ValidationException $e) {
+                $validationInstance = $e->validator;
+                $errorMessageData = $validationInstance->getMessageBag();
+                $errorMessages = $errorMessageData->getMessages();
+                return response()->json(["error" => $errorMessages]);
+            }
+
+
 
         if($request->file()) {
-
-        //    $file_name = time().'_'.$request->file->getClientOriginalName();
-         //   $request->file('file')->storeAs('uploads', $file_name, 'public');
-            $imagecontent = $request->file('file')->get();
+         $imagecontent = $request->file('file')->get();
             $query = array(
                 "image" => array(
                     "content" => base64_encode($imagecontent)
@@ -56,7 +63,7 @@ class VisionController extends Controller
             $batchrequest->setRequests($query);
             $response = $this->visionclient->images->annotate($batchrequest);
 
-            return response()->json(['success'=> $response->getResponses()]);
+            return response()->json($response->getResponses());
         } else {
             return response()->json(['success'=>'File not uploaded successfully.']);
         }

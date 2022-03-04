@@ -34,4 +34,4 @@ Route::get('/testv1', [\App\Http\Controllers\VisionController::class, 'ProductSe
 
 Route::get('/productsimilar', [\App\Http\Controllers\VisionController::class, 'ProductSearchSimilarRender'])->name("ProductSearchSimilarRender");
 
-Route::post('/productsimilar', [\App\Http\Controllers\VisionController::class, 'ProductSearchSimilar'])->name("ProductSearchSimilar");
+Route::post('/productsimilarpost', [\App\Http\Controllers\VisionController::class, 'ProductSearchSimilar'])->name("ProductSearchSimilar");

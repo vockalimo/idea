@@ -28,16 +28,87 @@
 <div id="app">
     <div>
         <msc-lens
-            webservice='{"uri":"https://laravel.test/productsimilar","fieldName":"file","params":{"_token":"{{ csrf_token() }}","id":"extra param you like"}}'
+            webservice='{"uri":"https://laravel.test/productsimilarpost","fieldName":"file","params":{"_token":"{{ csrf_token() }}","id":"extra param you like"}}'
             sensorsize="28">
             <img src="https://picsum.photos/id/635/1000/670" slot="msc-lens-vision" />
         </msc-lens>
     </div>
+    <div class="viewer">
+    </div>
+    <div id="result"></div>
+
 </div>
 
 <script
     type="module"
     src="https://blog.lalacube.com/mei/mjs/wc-msc-lens.js?r=1">
+</script>
+
+<script type="module">
+
+    import { _wcl } from 'https://blog.lalacube.com/mei/mjs/common-lib.js';
+
+    customElements.whenDefined('msc-lens').then(() => {
+        const lens = document.querySelector('msc-lens');
+        const viewer = document.querySelector('.viewer');
+        const viewerImg = document.querySelector('.viewer__img');
+        const viewerA = document.querySelector('.viewer__a');
+        const info = document.querySelector('.prediction-info');
+        const product = document.querySelector('#result');
+
+        const evts = [
+            'msc-lens-switch',
+            'msc-lens-capture',
+            'msc-lens-process',
+            'msc-lens-result'
+        ];
+
+        const handler = (evt) => {
+            const { detail, type } = evt;
+
+            switch (type) {
+                case 'msc-lens-switch': {
+                    const active = detail.active;
+                    console.log(`${type} > active:${active}`);
+                    viewer.classList.toggle('viewer--active',active);
+                    viewer.classList.remove('viewer--loading');
+                    break;
+                }
+                case 'msc-lens-capture':
+                    console.log(`${type} > image:${detail.image}, bounding:${detail.bounding}`);
+
+                    try {
+                        const url = URL.createObjectURL(detail.image);
+
+                        // viewerImg.onload = () => {
+                        //   URL.revokeObjectURL(url);
+                        // };
+                        viewerImg.src = url;
+                        viewerA.href = url;
+
+                        viewer.classList.add('viewer--active');
+                    } catch(err) {
+                        console.log(err.message);
+                    }
+                    break;
+                case 'msc-lens-result':
+                    console.log(`${type} > results:`, detail.result);
+                    viewer.classList.remove('viewer--loading');
+                    break;
+                case 'msc-lens-process':
+                    console.log(`${type}`);
+                    viewer.classList.add('viewer--loading');
+                    break;
+            }
+        };
+
+        evts.forEach(
+            (evt) => {
+                lens.addEventListener(evt, handler);
+            }
+        );
+    });
+
 </script>
 
 
