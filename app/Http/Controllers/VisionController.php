@@ -25,6 +25,10 @@ class VisionController extends Controller
 
     public function webDetection(Request $request)
     {
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: *");
+        header("Access-Control-Allow-Headers: Origin, Methods, Content-Type");
+
         try {
             $validateResult = $this->validate($request, [
                 'file' => 'required|image|mimes:jpg,jpeg,png|max:2048'
