@@ -35,3 +35,7 @@ Route::get('/testv1', [\App\Http\Controllers\VisionController::class, 'ProductSe
 Route::get('/productsimilar', [\App\Http\Controllers\VisionController::class, 'ProductSearchSimilarRender'])->name("ProductSearchSimilarRender");
 
 Route::post('/productsimilarpost', [\App\Http\Controllers\VisionController::class, 'ProductSearchSimilar'])->name("ProductSearchSimilar");
+
+Route::get('/webdetection', [\App\Http\Controllers\VisionController::class, 'webDetectionRender'])->name("webDetectionRender");
+
+Route::post('/webdetectionpost', [\App\Http\Controllers\VisionController::class, 'webDetection'])->name("webDetection");

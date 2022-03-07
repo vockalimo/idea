@@ -28,7 +28,7 @@
 <div id="app">
     <div>
         <msc-lens
-            webservice='{"uri":"https://laravel.test/productsimilarpost","fieldName":"file","params":{"_token":"{{ csrf_token() }}","id":"extra param you like"}}'
+            webservice='{"uri":"https://laravel.test/webdetectionpost","fieldName":"file","params":{"_token":"{{ csrf_token() }}","id":"extra param you like"}}'
             sensorsize="28">
             <img src="https://picsum.photos/id/635/1000/670" slot="msc-lens-vision" />
         </msc-lens>
@@ -37,16 +37,58 @@
     </div>
     <div id="result"></div>
 
+
 </div>
+<div id="target">Loading...</div>
+<script id="template" type="x-tmpl-mustache">
+      @{{ #resdata.webDetection }}
+         @{{ #webEntities }}
+          <ol>
+            <li> description  @{{ description }}  </li>
+            <li> entityId @{{ entityId }} </li>
+             <li> score @{{ score }} </li>
+           </ol>
+         @{{ /webEntities }}
+
+         @{{ #partialMatchingImages }}
+           <ol>
+            <li> score  @{{ score }}  </li>
+            <li> url  @{{ url }}  </li>
+            <img src="@{{ url }}" />
+           </ol>
+         @{{ /partialMatchingImages }}
+
+         @{{ #pagesWithMatchingImages }}
+
+          <ol>
+            <li> pageTitle  @{{ pageTitle }}  </li>
+            <li> score  @{{ score }}  </li>
+            <li> url  @{{ url }}  </li>
+            <img src="@{{ partialMatchingImages.url }}" />
+           </ol>
+
+         @{{ /pagesWithMatchingImages }}
+
+         @{{ #bestGuessLabels }}
+           <ol>
+             <li> label @{{ label }} </li>
+           </ol>
+         @{{ /bestGuessLabels }}
+
+       @{{/resdata.webDetection}}
+    </script>
 
 <script
     type="module"
     src="https://blog.lalacube.com/mei/mjs/wc-msc-lens.js?r=1">
 </script>
 
+<script scr="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.js"></script>
 <script type="module">
 
     import { _wcl } from 'https://blog.lalacube.com/mei/mjs/common-lib.js';
+    import Mustache from 'https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.js';
+
 
     customElements.whenDefined('msc-lens').then(() => {
         const lens = document.querySelector('msc-lens');
@@ -94,6 +136,12 @@
                 case 'msc-lens-result':
                     console.log(`${type} > results:`, detail.result);
                     viewer.classList.remove('viewer--loading');
+                    let resdata = detail.result[0];
+                    console.log(resdata);
+                    let template = document.getElementById('template').innerHTML;
+                    let rendered = Mustache.render(template, { "resdata" : resdata} );
+                    document.getElementById('target').innerHTML = rendered;
+
                     break;
                 case 'msc-lens-process':
                     console.log(`${type}`);
@@ -113,5 +161,6 @@
 
 
 <script src="{{ mix('js/app.js') }}?r=1"></script>
+
 </body>
 </html>

@@ -23,6 +23,46 @@ class VisionController extends Controller
         $this->visionclient = Google::make('vision');
     }
 
+    public function webDetection(Request $request)
+    {
+        try {
+            $validateResult = $this->validate($request, [
+                'file' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+            ]);
+        } catch (ValidationException $e) {
+            $validationInstance = $e->validator;
+            $errorMessageData = $validationInstance->getMessageBag();
+            $errorMessages = $errorMessageData->getMessages();
+            return response()->json(["error" => $errorMessages]);
+        }
+
+        if($request->file()) {
+            $imagecontent = $request->file('file')->get();
+            $query = array(
+                "image" => array(
+                    "content" => base64_encode($imagecontent)
+                ),
+                "features" => array(
+                    "type" => "WEB_DETECTION",
+                    "maxResults" => 10
+                ),
+
+            );
+            $batchrequest = new BatchAnnotateImagesRequest();
+            $batchrequest->setRequests($query);
+            $response = $this->visionclient->images->annotate($batchrequest);
+
+            return response()->json($response->getResponses());
+        } else {
+            return response()->json(['success'=>'File not uploaded successfully.']);
+        }
+
+    }
+
+    public function webDetectionRender(Request $request) {
+        return view('webdetectionsearch');
+    }
+
     public function ProductSearchSimilar(Request $request) {
 
 
