@@ -14,5 +14,7 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         //
         'https://idea.lalacube.com/productsimilarpost',
+        'https://idea.lalacube.com/testv1',
+        'https://idea.lalacube.com/webdetectionpost'
     ];
 }
