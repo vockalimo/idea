@@ -48,7 +48,7 @@ class VisionController extends Controller
                 ),
                 "features" => array(
                     "type" => "WEB_DETECTION",
-                    "maxResults" => 10
+                    "maxResults" => 30
                 ),
 
             );
