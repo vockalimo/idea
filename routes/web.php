@@ -26,6 +26,9 @@ Route::get('/imagesearch', function () {
     return view('imagesearch');
 });
 
+/*Route::post('/card/search', [\App\Http\Controllers\CardsController::class, 'searchCards'])->name('searchCards');*/
+
+
 Route::post('/uploadImage', [FileController::class, 'upload'])->name('upload');
 
 Route::get('/test', [\App\Http\Controllers\VisionController::class, 'test'])->name('test');
@@ -38,4 +41,4 @@ Route::post('/productsimilarpost', [\App\Http\Controllers\VisionController::clas
 
 Route::get('/webdetection', [\App\Http\Controllers\VisionController::class, 'webDetectionRender'])->name("webDetectionRender");
 
-Route::post('/webdetectionpost', [\App\Http\Controllers\VisionController::class, 'webDetection'])->name("webDetection");
+Route::match(['post','options'], [\App\Http\Controllers\VisionController::class, 'webDetection'])->name("webDetection");

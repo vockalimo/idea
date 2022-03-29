@@ -1,5 +1,6 @@
 /node_modules
 /public/hot
+/public/carddemo/.DS_Store
 /public/storage
 /storage/*.key
 /storege/
