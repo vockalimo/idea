@@ -41,4 +41,4 @@ Route::post('/productsimilarpost', [\App\Http\Controllers\VisionController::clas
 
 Route::get('/webdetection', [\App\Http\Controllers\VisionController::class, 'webDetectionRender'])->name("webDetectionRender");
 
-Route::match(['post','options'], [\App\Http\Controllers\VisionController::class, 'webDetection'])->name("webDetection");
+Route::match(['post','options'],"/webdetectionpost", [\App\Http\Controllers\VisionController::class, 'webDetection'])->name("webDetection");
