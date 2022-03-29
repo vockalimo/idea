@@ -1,0 +1,268 @@
+{
+   "cards": [
+      {
+         "id": "5445",
+         "title": "雷丘V",
+         "catelog": "招式",
+         "catevalue": "0",
+         "imagesrc": "https://i.imgur.com/Nxf2lyD.jpg",
+         "expansionCodes": "S9",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/5445/",
+         "collectorNumber": "034/100",
+         "count": "3"
+      },
+      {
+         "id": "5784",
+         "title": "逐電犬V",
+         "catelog": "招式",
+         "catevalue": "0",
+         "imagesrc": "https://i.imgur.com/AHFNWNG.jpg",
+         "expansionCodes": "SI",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/5784/",
+         "collectorNumber": "155/414",
+         "count": "2"
+      },
+      {
+         "id": "36",
+         "title": "逐電犬VMAX",
+         "catelog": "招式",
+         "catevalue": "0",
+         "imagesrc": "https://i.imgur.com/X19EZWy.jpg",
+         "expansionCodes": "S8",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/36/",
+         "collectorNumber": "035/100",
+         "count": "1"
+      },
+      {
+         "id": "1127",
+         "title": "鍬農炮蟲V",
+         "catelog": "招式",
+         "catevalue": "0",
+         "imagesrc": "https://i.imgur.com/sHt16gP.jpg",
+         "expansionCodes": "SC2b",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/1127/",
+         "collectorNumber": "038/144",
+         "count": "1"
+      },
+      {
+         "id": "5762",
+         "title": "咩利羊",
+         "catelog": "招式",
+         "catevalue": "0",
+         "imagesrc": "https://i.imgur.com/7Nmi4Vn.jpg",
+         "expansionCodes": "SI",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/5762/",
+         "collectorNumber": "133/414",
+         "count": "3"
+      },
+      {
+         "id": "5763",
+         "title": "1階進化 茸茸羊",
+         "catelog": "招式",
+         "catevalue": "0",
+         "imagesrc": "https://i.imgur.com/a7fPfUI.jpg",
+         "expansionCodes": "SI",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/5763/",
+         "collectorNumber": "134/414",
+         "count": "3"
+      },
+      {
+         "id": "6117",
+         "title": "光輝甲賀忍蛙",
+         "catelog": "招式",
+         "catevalue": "0",
+         "imagesrc": "https://i.imgur.com/La7y2OE.jpg",
+         "expansionCodes": "S9a",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/6117/",
+         "collectorNumber": "026/067",
+         "count": "1"
+      },
+      {
+         "id": "6208",
+         "title": "叉字蝠V",
+         "catelog": "招式",
+         "catevalue": "0",
+         "imagesrc": "https://i.imgur.com/xd9vg15.jpg",
+         "expansionCodes": "SLD",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/6208/",
+         "collectorNumber": "001/020",
+         "count": "1"
+      },
+      {
+         "id": "6218",
+         "title": "先機球",
+         "catelog": "物品卡",
+         "catevalue": 4,
+         "imagesrc": "https://i.imgur.com/LMwwSpP.jpg",
+         "expansionCodes": "SLD",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/6218/",
+         "collectorNumber": "011/020",
+         "count": "4"
+      },
+      {
+         "id": "6220",
+         "title": "高級球",
+         "catelog": "物品卡",
+         "catevalue": 4,
+         "imagesrc": "https://i.imgur.com/eZwJgxb.jpg",
+         "expansionCodes": "SLD",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/6220/",
+         "collectorNumber": "013/020",
+         "count": "3"
+      },
+      {
+         "id": "6007",
+         "title": "等級球",
+         "catelog": "物品卡",
+         "catevalue": 4,
+         "imagesrc": "https://i.imgur.com/8bfxMek.jpg",
+         "expansionCodes": "SI",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/6007/",
+         "collectorNumber": "381/414",
+         "count": "2"
+      },
+      {
+         "id": "5528",
+         "title": "普通釣竿",
+         "catelog": "物品卡",
+         "catevalue": 4,
+         "imagesrc": "https://i.imgur.com/kcy1q1S.jpg",
+         "expansionCodes": "SK",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/5528/",
+         "collectorNumber": "017/030",
+         "count": "1"
+      },
+      {
+         "id": "5525",
+         "title": "道具拆除器",
+         "catelog": "物品卡",
+         "catevalue": 4,
+         "imagesrc": "https://i.imgur.com/pD4RCPL.jpg",
+         "expansionCodes": "SK",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/5525/",
+         "collectorNumber": "014/030",
+         "count": "1"
+      },
+      {
+         "id": "6222",
+         "title": "寶可夢交替",
+         "catelog": "物品卡",
+         "catevalue": 4,
+         "imagesrc": "https://i.imgur.com/IrmDWXp.jpg",
+         "expansionCodes": "SLD",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/6222/",
+         "collectorNumber": "015/020",
+         "count": "1"
+      },
+      {
+         "id": "5331",
+         "title": "堅韌斗篷",
+         "catelog": "物品卡",
+         "catevalue": 4,
+         "imagesrc": "https://i.imgur.com/YUR1Wl4.jpg",
+         "expansionCodes": "S8b",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/5331/",
+         "collectorNumber": "143/184",
+         "count": "2"
+      },
+      {
+         "id": "595",
+         "title": "道具妨礙器",
+         "catelog": "物品卡",
+         "catevalue": 4,
+         "imagesrc": "https://i.imgur.com/qIzLjZQ.jpg",
+         "expansionCodes": "S5R",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/595/",
+         "collectorNumber": "064/070",
+         "count": "1"
+      },
+      {
+         "id": "5532",
+         "title": "氣球",
+         "catelog": "物品卡",
+         "catevalue": 4,
+         "imagesrc": "https://i.imgur.com/jffADiO.jpg",
+         "expansionCodes": "SK",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/5532/",
+         "collectorNumber": "021/030",
+         "count": "2"
+      },
+      {
+         "id": "6226",
+         "title": "博士的研究",
+         "catelog": "支援者卡",
+         "catevalue": 5,
+         "imagesrc": "https://i.imgur.com/Q0lLsS2.jpg",
+         "expansionCodes": "SLD",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/6226/",
+         "collectorNumber": "019/020",
+         "count": "4"
+      },
+      {
+         "id": "6034",
+         "title": "瑪俐的驕傲",
+         "catelog": "",
+         "catevalue": "0",
+         "imagesrc": "https://i.imgur.com/RI2ZgUu.jpg",
+         "expansionCodes": "SI",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/6034/",
+         "collectorNumber": "408/414",
+         "count": "2"
+      },
+      {
+         "id": "6227",
+         "title": "老大的指令",
+         "catelog": "支援者卡",
+         "catevalue": 5,
+         "imagesrc": "https://i.imgur.com/LKKDPz4.jpg",
+         "expansionCodes": "SLD",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/6227/",
+         "collectorNumber": "020/020",
+         "count": "3"
+      },
+      {
+         "id": "6031",
+         "title": "希嘉娜的決心",
+         "catelog": "支援者卡",
+         "catevalue": 5,
+         "imagesrc": "https://i.imgur.com/xpZHrzR.jpg",
+         "expansionCodes": "SI",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/6031/",
+         "collectorNumber": "405/414",
+         "count": "2"
+      },
+      {
+         "id": "2259",
+         "title": "暴風雨山脈",
+         "catelog": "競技場卡",
+         "catevalue": 2,
+         "imagesrc": "https://i.imgur.com/97jImWh.jpg",
+         "expansionCodes": "SCD",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/2259/",
+         "collectorNumber": "150/159",
+         "count": "3"
+      },
+      {
+         "id": "5362",
+         "title": "高速雷能量",
+         "catelog": "特殊能量卡",
+         "catevalue": 3,
+         "imagesrc": "https://i.imgur.com/LzfLDAH.jpg",
+         "expansionCodes": "S8b",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/5362/",
+         "collectorNumber": "174/184",
+         "count": "4"
+      },
+      {
+         "id": "2099",
+         "title": "基本雷能量",
+         "catelog": "基本能量卡",
+         "catevalue": 3,
+         "imagesrc": "https://i.imgur.com/WObZV3f.jpg",
+         "expansionCodes": "S8a",
+         "cardurl": "https://asia.pokemon-card.com/tw/card-search/detail/2099/",
+         "collectorNumber": "LIG",
+         "count": "8"
+      }
+   ]
+}
