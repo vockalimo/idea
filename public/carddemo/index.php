@@ -63,8 +63,6 @@ if (isset($_GET['s']) && $_GET['s'] != "" ) {
 
 <script>
     let jsonObj = JSON.parse(document.getElementById('deskcontent').value);
-    console.log(" json " + jsonObj.cards);
-    console.log(" len " + jsonObj.cards.length);
 
     const $ = (id) => document.getElementById(id)
     const drawBtn = $('drawBtn')
@@ -82,13 +80,12 @@ if (isset($_GET['s']) && $_GET['s'] != "" ) {
     exportImage.addEventListener('click', (e) => {
 
             let ratio = window.devicePixelRatio;
-            console.log(" ratio" + ratio);
             let dataURL = canvas.toDataURL({
-                format: 'png',
-                quality: 0.8,
-                multiplier: 1,
+                format: 'jpg',
+                quality: 0.6,
+                //multiplier: 1,
             });
-            downloadname = 'canvas.png'
+            downloadname = 'canvas.jpg'
             downloadURI(dataURL, downloadname);
             console.log(" download......");
 
@@ -116,18 +113,12 @@ if (isset($_GET['s']) && $_GET['s'] != "" ) {
     let baseheight = 400;
     let offbaseheight = 500;
     let modevar = 9;
-    console.log(" len " + jsonObj.cards.length);
 
 
 
 
 
-    jsonObj.cards.forEach(
-        function (item, index) {
-            console.log(index)
-            console.log(item)
-        }
-    )
+
     let group = "";
     jsonObj.cards.forEach(
         function (item, index) {
@@ -180,8 +171,6 @@ if (isset($_GET['s']) && $_GET['s'] != "" ) {
                     left: width + 20,
                     top: height + 20
                 });
-                console.log(width);
-                console.log(height);
 
                 canvas.add(group)
 
@@ -192,22 +181,24 @@ if (isset($_GET['s']) && $_GET['s'] != "" ) {
         }
     )
     quo = Math.floor(jsonObj.cards.length/modevar);
-    console.log(" quo " + quo);
 
-    left_offset = basewidth * ( quo + 1);
-    top_offset = baseheight * ( quo + 1);
-    console.log(" offset " + top_offset + " left" + left_offset);
+    remainder = jsonObj.cards.length % modevar;
+
+    left_offset = basewidth * ( remainder + 1);
+    top_offset = ( offbaseheight  ) * ( quo  );
     let itext = new fabric.IText("雷丘逐電犬牌組-編輯內容", {
-        left: left_offset,
-        top: top_offset,
+        left: left_offset ,
+        top: top_offset + 50   ,
         fontSize: 80
     })
 
-    let itextbox = new fabric.Textbox("編輯內容", {
+    let itextbox = new fabric.Textbox("編輯內容, 比如牌組的特性", {
             left: left_offset,
-            top: top_offset +180,
+            top: top_offset + 170,
             fontSize: 40
     })
+
+
 
     canvas.add(itext)
     canvas.add(itextbox)
