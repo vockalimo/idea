@@ -49,6 +49,17 @@ if (isset($_GET['s']) && $_GET['s'] != "" ) {
 ?>
 
 <html>
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VYSMQL21C9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-VYSMQL21C9');
+    </script>
+</head>
 <body>
 <div> menu
     <button id="exportImage">輸出檔案</button>
