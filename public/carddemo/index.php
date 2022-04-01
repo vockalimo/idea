@@ -169,7 +169,8 @@ if (isset($_GET['s']) && $_GET['s'] != "" ) {
 
                 group = new fabric.Group([oImg, circle, numtext, text], {
                     left: width + 20,
-                    top: height + 20
+                    top: height + 20,
+                    selectable: false
                 });
 
                 canvas.add(group)
