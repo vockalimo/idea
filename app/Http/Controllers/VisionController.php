@@ -81,11 +81,8 @@ class VisionController extends Controller
 
                 $key = "webdetectionpost.". $user->id;
                 Redis::throttle($key)
-                    ->allow(10)->every(86400)
+                    ->allow(1000)->every(86400)
                     ->then(function () use ($user) {
-                        // 正常访问
-
-                        //
                         logger(" ok gooooo");
                     }, function () {
                         // 触发并发访问上限

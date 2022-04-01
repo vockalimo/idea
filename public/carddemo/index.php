@@ -64,7 +64,7 @@ if (isset($_GET['s']) && $_GET['s'] != "" ) {
 <script>
     let jsonObj = JSON.parse(document.getElementById('deskcontent').value);
     console.log(" json " + jsonObj.cards);
-    console.log(" len " size(jsonObj.cards))
+    console.log(" len " + jsonObj.cards.length);
 
     const $ = (id) => document.getElementById(id)
     const drawBtn = $('drawBtn')
@@ -116,6 +116,10 @@ if (isset($_GET['s']) && $_GET['s'] != "" ) {
     let baseheight = 400;
     let offbaseheight = 500;
     let modevar = 9;
+    console.log(" len " + jsonObj.cards.length);
+
+
+
 
 
     jsonObj.cards.forEach(
@@ -187,13 +191,26 @@ if (isset($_GET['s']) && $_GET['s'] != "" ) {
 
         }
     )
-    let itext = new fabric.IText("雷丘逐電犬牌組", {
-        left: 2400,
-        top: 1100,
+    quo = Math.floor(jsonObj.cards.length/modevar);
+    console.log(" quo " + quo);
+
+    left_offset = basewidth * ( quo + 1);
+    top_offset = baseheight * ( quo + 1);
+    console.log(" offset " + top_offset + " left" + left_offset);
+    let itext = new fabric.IText("雷丘逐電犬牌組-編輯內容", {
+        left: left_offset,
+        top: top_offset,
         fontSize: 80
     })
 
+    let itextbox = new fabric.Textbox("編輯內容", {
+            left: left_offset,
+            top: top_offset +180,
+            fontSize: 40
+    })
+
     canvas.add(itext)
+    canvas.add(itextbox)
 
 
     function setZoom(zoom) {
