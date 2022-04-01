@@ -6,6 +6,46 @@ $data = file_get_contents($file);
 $obj = json_decode($data);
 $deskcontent = $obj;
 
+$code = 'qp8356';
+if (isset($_GET['s']) && $_GET['s'] != "" ) {
+         $code = $_GET['s'];
+     }
+
+ $url = 'https://ptcgtw.shop/connect_mysql2.php?type=找牌組&short_url='.$code;
+ $ch = curl_init();
+ curl_setopt($ch, CURLOPT_URL, $url);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+ $result = curl_exec($ch);
+
+
+
+ $data = explode("┤", $result);
+ $object = new StdClass();
+
+
+ $re = '/(?P<url>^https:.*)├張數┐(?P<count>.*)┼價錢┐┼card_type┐(?P<card_type>.*)┼p_color┐(?P<p_color>.*)┼set_name┐(?P<set_name>.*)┼set_no┐(?P<set_no>.*)┼name┐(?P<name>.*)┼price┐(?P<price>\d+)/m';
+ foreach ($data as $key => $value) {
+         $card = new StdClass();
+         preg_match($re, $value, $matches);
+         if ( $matches['url'] == '') {
+                 continue;
+     }
+     $card->id = $matches['url'];
+     $card->title = $matches['name'];
+     $card->catelog = $matches['card_type'];
+     $card->catevalue = $matches['card_type'];
+     $card->imagesrc  = $matches['url'];
+     $card->expansionCodes = $matches['set_name'];
+     $card->count = $matches['count'];
+     $object->cards[] = $card;
+ }
+
+
+ $deskcontent = $object;
+
+
+
+
 ?>
 
 <html>
@@ -16,7 +56,7 @@ $deskcontent = $obj;
     <button id="zoomOutBtn">縮小</button>
     目前縮放: <input type="text" readonly value="35%" id="zoom" style="border:3px solid #FFFFFF">
 </div>
-<canvas id="canvas" width="1100" height="600"></canvas>
+<canvas id="canvas" width="1024" height="768"></canvas>
 
 <input type="hidden" name="deskcontent" id="deskcontent" value='<?php echo json_encode($deskcontent) ?>'>
 <script src="https://cdn.bootcdn.net/ajax/libs/fabric.js/521/fabric.js"></script>
@@ -24,6 +64,7 @@ $deskcontent = $obj;
 <script>
     let jsonObj = JSON.parse(document.getElementById('deskcontent').value);
     console.log(" json " + jsonObj.cards);
+    console.log(" len " size(jsonObj.cards))
 
     const $ = (id) => document.getElementById(id)
     const drawBtn = $('drawBtn')
@@ -74,7 +115,7 @@ $deskcontent = $obj;
     let basewidth = 300;
     let baseheight = 400;
     let offbaseheight = 500;
-    let modevar = 10;
+    let modevar = 9;
 
 
     jsonObj.cards.forEach(
@@ -83,7 +124,7 @@ $deskcontent = $obj;
             console.log(item)
         }
     )
-
+    let group = "";
     jsonObj.cards.forEach(
         function (item, index) {
             let mFirst = parseInt(index / modevar);
@@ -100,12 +141,11 @@ $deskcontent = $obj;
                 oImg.scaleToHeight(baseheight)
 
                 let text = new fabric.Text(item.title, {
-                    left: width + 190,
-                    top: height + 80,
                     originX: 'center',
                     originY: 'center',
                     left: 140,
-                    top: 450
+                    top: 450,
+                    fontSize: 30
                 })
 
                 let circle = new fabric.Circle({
@@ -132,10 +172,13 @@ $deskcontent = $obj;
                 });
 
 
-                let group = new fabric.Group([oImg, circle, numtext, text], {
+                group = new fabric.Group([oImg, circle, numtext, text], {
                     left: width + 20,
                     top: height + 20
                 });
+                console.log(width);
+                console.log(height);
+
                 canvas.add(group)
 
 
@@ -145,10 +188,11 @@ $deskcontent = $obj;
         }
     )
     let itext = new fabric.IText("雷丘逐電犬牌組", {
-        left: 2000,
+        left: 2400,
         top: 1100,
         fontSize: 80
     })
+
     canvas.add(itext)
 
 

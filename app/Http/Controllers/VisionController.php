@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 
+
+use App\Models\User;
 use Google\Service\Vision\BatchAnnotateImagesRequest;
+
+use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Http;
 use PulkitJalan\Google\Facades\Google;
 
 class VisionController extends Controller
@@ -17,10 +24,20 @@ class VisionController extends Controller
      * @var \Google_Service
      */
     private $visionclient;
+    /**
+     * @var \Google_Service
+     */
+    private $peopleclient;
 
     public function __construct()
     {
         $this->visionclient = Google::make('vision');
+     //   $this->peopleclient = Google::make('peopleservice');
+        $this->peopleclient = new Http();
+
+
+
+
     }
 
     public function webDetection(Request $request)
@@ -29,6 +46,66 @@ class VisionController extends Controller
         header("Access-Control-Allow-Methods: *");
         header("Access-Control-Allow-Headers: Origin, Methods, Content-Type");
         header("Access-Control-Allow-Headers: Authorization");
+
+        try {
+            $token = $request->bearerToken();
+            if ($token != "") {
+                logger("token is ..   " . $token);
+                $query = array(
+                    "key" => config('google.developer_key'),
+                    "personFields" => "emailAddresses,nicknames,names,photos",
+                );
+                $header =      [
+                    'Authorization' => 'Bearer '. $token,
+                ];
+                $response = Http::withOptions(['debug' => false])->withHeaders($header)->get('https://people.googleapis.com/v1/people/me', $query, ['debug' => true]);
+                logger(print_r($query,1));
+               // logger($response->getBody()->getContents());
+                $peopledata = json_decode($response->getBody());
+                $name = $peopledata->names[0]->displayName;
+                $profilepic = $peopledata->photos[0]->url;
+                $email = $peopledata->emailAddresses[0]->value;
+                $username = "mei-chrome" . mt_rand(10, 100);
+
+
+                $user = User::whereEmail($email)->first();
+                if (!$user) {
+                    $user = new User();
+                    $user->email = $email;
+                    $user->name  = $name;
+                    $user->password = "mei";
+                   // $user->profilepic = $profilepic;
+                    $user->save();
+                }
+
+
+                $key = "webdetectionpost.". $user->id;
+                Redis::throttle($key)
+                    ->allow(10)->every(86400)
+                    ->then(function () use ($user) {
+                        // 正常访问
+
+                        //
+                        logger(" ok gooooo");
+                    }, function () {
+                        // 触发并发访问上限
+                        logger(" Over Limit.....");
+                        abort(429, 'Too Many Requests');
+                    });
+
+
+
+
+
+            }
+
+        } catch (Exception $e) {
+
+
+        }
+
+
+
 
         try {
             $validateResult = $this->validate($request, [
@@ -65,6 +142,9 @@ class VisionController extends Controller
     }
 
     public function webDetectionRender(Request $request) {
+
+
+
         return view('webdetectionsearch');
     }
 

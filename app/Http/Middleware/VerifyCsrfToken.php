@@ -15,6 +15,7 @@ class VerifyCsrfToken extends Middleware
         //
         'https://idea.lalacube.com/productsimilarpost',
         'https://idea.lalacube.com/testv1',
-        'https://idea.lalacube.com/webdetectionpost'
+        'https://idea.lalacube.com/webdetectionpost',
+        'https://laravel.test/webdetectionpost'
     ];
 }
